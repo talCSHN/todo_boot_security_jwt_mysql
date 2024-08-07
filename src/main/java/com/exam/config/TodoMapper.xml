@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.config.TodoMapper">
+ 
+   <select id="findAll" resultType="Todo" parameterType="string">
+      select id, userid, description, targetDate, done 
+      from todo
+       where userid=#{userid}
+      order by id
+   </select>
+   
+   <update id="update" parameterType="Todo">
+     update todo
+     set description=#{description}, targetDate=#{targetDate}
+     where id=#{id}
+   
+   </update>
+   
+   <insert id="save" parameterType="Todo">
+      insert into todo (  userid, description, targetDate, done)
+      values (  #{userid}, #{description}, #{targetDate}, false )
+   </insert> 
+  
+   
+   <delete id="deleteById" parameterType="long">
+     delete from todo
+     where id=#{id}
+   </delete>
+   
+    <select id="findById" resultType="Todo" parameterType="long">
+      select id, userid, description, targetDate, done
+      from todo
+      where id=#{id}
+   </select>
+   
+</mapper>

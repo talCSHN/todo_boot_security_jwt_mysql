@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.config.MemberMapper">
+ 
+    <select id="idCheck" resultType="Member" parameterType="string">
+      select userid, password, username, role
+      from member
+      where userid=#{userid} 
+   </select>
+   
+    <select id="authenticate" resultType="Member" parameterType="hashmap">
+      select userid, password, username, role
+      from member
+      where userid=#{userid} and password=#{password}
+   </select>
+   
+   <insert id="save" parameterType="Member">
+      insert into member ( userid, password, username)
+      values (#{userid}, #{password}, #{username})
+   </insert>
+   
+   <select id="findById" resultType="Member" parameterType="string">
+      select userid, password, username, role
+      from member
+      where userid=#{userid} 
+   </select>
+</mapper>
